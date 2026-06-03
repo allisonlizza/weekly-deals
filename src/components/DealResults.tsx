@@ -28,8 +28,10 @@ export async function DealResults({
     publixStoreNumber: publixStore || DEFAULT_PUBLIX_STORE,
   };
 
-  const publixLabel = getPreferredStore("publix", publixStore)?.shortName;
-  const targetLabel = getPreferredStore("target")?.shortName;
+  const storeLabels = params.retailers.map((r) => {
+    const store = getPreferredStore(r, r === "publix" ? publixStore : undefined);
+    return store ? `${store.retailer === "publix" ? "Publix" : store.retailer === "target" ? "Target" : store.retailer === "whole-foods" ? "Whole Foods" : "Costco"} ${store.shortName}` : null;
+  }).filter(Boolean);
 
   const { deals, warnings, fetchedAt } = await searchDeals(params);
 
@@ -43,8 +45,7 @@ export async function DealResults({
         </h2>
         <p className="text-sm text-stone-500">
           {deals.length} deal{deals.length === 1 ? "" : "s"}
-          {publixLabel && ` · Publix ${publixLabel}`}
-          {targetLabel && ` · Target ${targetLabel}`}
+          {storeLabels.length > 0 && ` · ${storeLabels.join(" · ")}`}
         </p>
       </div>
 
