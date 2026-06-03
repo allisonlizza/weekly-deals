@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:gist.github.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(npm run *)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(which node *)",
+      "Read(//usr/local/bin/**)",
+      "Read(//Users/allisonlizza/**)",
+      "Bash(find /Users/allisonlizza -name \"node\" -type f 2>/dev/null | head -5; find /usr /opt -name \"node\" -type f 2>/dev/null | head -5)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(command -v npm)",
+      "Read(//opt/**)",
+      "WebFetch(domain:www.wholefoodsmarket.com)",
+      "Bash(git --version)",
+      "Bash(gh --version)",
+      "Bash(brew list *)",
+      "Bash(brew install *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}
