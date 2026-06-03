@@ -34,10 +34,8 @@ Open [http://localhost:3000](http://localhost:3000).
 | Chain | Store | # | Address |
 |-------|--------|---|---------|
 | Publix | Town Brookhaven | 1363 | 104 Town Blvd, Brookhaven 30319 |
-| Publix | Chamblee Plaza | 1777 | 5534 Peachtree Blvd, Chamblee 30341 |
 | Target | North Druid Hills | 1486 | 2400 N Druid Hills Rd NE, Atlanta 30329 |
 
-Pick which Publix you’re shopping in the app (Brookhaven vs Chamblee) for coupon links. Weekly flyer prices are usually the same across Atlanta-area Publix stores.
 
 ## Whole Foods store id
 
