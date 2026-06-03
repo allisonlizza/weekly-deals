@@ -38,6 +38,14 @@ export const PREFERRED_STORES: PreferredStore[] = [
     city: "Chamblee",
     zip: "30341",
   },
+  {
+    retailer: "costco",
+    storeNumber: "1084",
+    shortName: "Brookhaven",
+    address: "500 Brookhaven Ave NE",
+    city: "Atlanta",
+    zip: "30319",
+  },
 ];
 
 export const DEFAULT_PUBLIX_STORE = "1363";
@@ -76,6 +84,8 @@ export function retailerWeeklyAdUrl(
         ? `https://www.wholefoodsmarket.com/sales-flyer?store-id=${sid}`
         : "https://www.wholefoodsmarket.com/sales-flyer";
     }
+    case "costco":
+      return "https://www.costco.com/savings-events.html";
     default:
       return undefined;
   }
@@ -99,6 +109,8 @@ export function retailerStorePageUrl(
         ? `https://www.wholefoodsmarket.com/stores/${slugify(wfm.shortName)}`
         : "https://www.wholefoodsmarket.com/stores";
     }
+    case "costco":
+      return "https://www.costco.com/warehouse-locations/brookhaven-atlanta-ga-1084.html";
     default:
       return undefined;
   }

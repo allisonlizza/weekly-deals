@@ -41,7 +41,9 @@ export async function searchDeals(params: SearchParams): Promise<SearchResult> {
           ? "30329"
           : retailer === "publix"
             ? flippPostalCodeForSearch(["publix"], params.publixStoreNumber)
-            : flippZip;
+            : retailer === "costco"
+              ? "30319"
+              : flippZip;
 
       return await fetchRetailerDealsFromFlipp(
         retailer,
@@ -79,7 +81,7 @@ export async function searchDeals(params: SearchParams): Promise<SearchResult> {
 
 export function retailerIdsFromParam(value: string | null): RetailerId[] {
   if (!value) return ["publix", "target", "whole-foods"];
-  const allowed = new Set<RetailerId>(["publix", "target", "whole-foods"]);
+  const allowed = new Set<RetailerId>(["publix", "target", "whole-foods", "costco"]);
   return value
     .split(",")
     .map((s) => s.trim() as RetailerId)

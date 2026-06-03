@@ -27,6 +27,12 @@ export const RETAILERS: Record<RetailerId, RetailerConfig> = {
     label: "Whole Foods",
     flippBrowseQuery: "whole foods",
   },
+  costco: {
+    id: "costco",
+    label: "Costco",
+    flippMerchantId: 2519,
+    flippBrowseQuery: "costco",
+  },
 };
 
-export const DEFAULT_RETAILERS: RetailerId[] = ["publix", "target", "whole-foods"];
+export const DEFAULT_RETAILERS: RetailerId[] = ["publix", "target", "whole-foods", "costco"];

@@ -7,22 +7,17 @@ import { Suspense } from "react";
 interface HomeProps {
   searchParams: Promise<{
     q?: string;
-    zip?: string;
     stores?: string;
-    wfmStoreId?: string;
     publixStore?: string;
   }>;
 }
 
 export default async function Home({ searchParams }: HomeProps) {
   const sp = await searchParams;
-  const zip = sp.zip?.trim() || "30319";
   const publixStore = sp.publixStore?.trim() || DEFAULT_PUBLIX_STORE;
   const hasSearch = Boolean(
     sp.q !== undefined ||
-      sp.zip !== undefined ||
       sp.stores !== undefined ||
-      sp.wfmStoreId !== undefined ||
       sp.publixStore !== undefined,
   );
 
@@ -36,8 +31,8 @@ export default async function Home({ searchParams }: HomeProps) {
           What&apos;s on sale where you shop
         </h1>
         <p className="mt-3 max-w-2xl text-stone-600">
-          Search by item or brand across Publix, Target, and Whole Foods.
-          See BOGOs, percent-off promos, and flyer prices for your ZIP.
+          Search by item or brand across Publix, Target, Whole Foods, and Costco.
+          See BOGOs, percent-off promos, and weekly flyer prices.
         </p>
       </header>
 
@@ -54,9 +49,8 @@ export default async function Home({ searchParams }: HomeProps) {
           >
             <DealResults
               query={sp.q ?? ""}
-              zip={zip}
               storesParam={sp.stores ?? null}
-              wfmStoreId={sp.wfmStoreId ?? getDefaultWfmStoreId() ?? null}
+              wfmStoreId={getDefaultWfmStoreId() ?? null}
               publixStore={publixStore}
             />
           </Suspense>
@@ -65,8 +59,8 @@ export default async function Home({ searchParams }: HomeProps) {
 
       {!hasSearch && (
         <p className="mt-8 text-center text-sm text-stone-500">
-          Set your ZIP and stores, then search — or leave the item blank to
-          browse weekly ad highlights.
+          Pick your stores and search — or leave the item blank to browse
+          this week&apos;s ad highlights.
         </p>
       )}
 

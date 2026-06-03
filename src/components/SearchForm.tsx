@@ -13,6 +13,7 @@ const STORES: { id: RetailerId; label: string }[] = [
   { id: "publix", label: "Publix" },
   { id: "target", label: "Target" },
   { id: "whole-foods", label: "Whole Foods" },
+  { id: "costco", label: "Costco" },
 ];
 
 export function SearchForm() {
@@ -20,14 +21,13 @@ export function SearchForm() {
   const params = useSearchParams();
 
   const [query, setQuery] = useState(params.get("q") ?? "");
-  const [zip, setZip] = useState(params.get("zip") ?? "30319");
   const [publixStore, setPublixStore] = useState(
     params.get("publixStore") ?? DEFAULT_PUBLIX_STORE,
   );
 
   const [stores, setStores] = useState<RetailerId[]>(() => {
     const raw = params.get("stores");
-    if (!raw) return ["publix", "target", "whole-foods"];
+    if (!raw) return ["publix", "target", "whole-foods", "costco"];
     return raw.split(",").filter(Boolean) as RetailerId[];
   });
 
@@ -53,7 +53,6 @@ export function SearchForm() {
     savePublixStorePreference(publixStore);
     const next = new URLSearchParams();
     if (query.trim()) next.set("q", query.trim());
-    next.set("zip", zip.trim());
     next.set("publixStore", publixStore);
     if (stores.length && stores.length < 3) {
       next.set("stores", stores.join(","));
@@ -85,25 +84,6 @@ export function SearchForm() {
           <p className="mt-1 text-xs text-stone-500">
             Leave blank to browse this week&apos;s ad highlights at each store.
           </p>
-        </div>
-
-        <div>
-          <label
-            htmlFor="zip"
-            className="mb-1 block text-sm font-medium text-stone-700"
-          >
-            Home ZIP
-          </label>
-          <input
-            id="zip"
-            type="text"
-            inputMode="numeric"
-            pattern="\d{5}"
-            required
-            value={zip}
-            onChange={(e) => setZip(e.target.value)}
-            className="w-full rounded-xl border border-stone-300 px-4 py-3 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-200 sm:max-w-[14rem]"
-          />
         </div>
 
         <fieldset>

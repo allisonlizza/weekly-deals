@@ -9,7 +9,6 @@ import { DealCard } from "./DealCard";
 
 interface DealResultsProps {
   query: string;
-  zip: string;
   storesParam: string | null;
   wfmStoreId: string | null;
   publixStore: string;
@@ -17,14 +16,13 @@ interface DealResultsProps {
 
 export async function DealResults({
   query,
-  zip,
   storesParam,
   wfmStoreId,
   publixStore,
 }: DealResultsProps) {
   const params: SearchParams = {
     query,
-    postalCode: zip,
+    postalCode: "30319",
     retailers: retailerIdsFromParam(storesParam),
     wholeFoodsStoreId: wfmStoreId ?? undefined,
     publixStoreNumber: publixStore || DEFAULT_PUBLIX_STORE,
@@ -44,7 +42,7 @@ export async function DealResults({
             : "This week’s highlights"}
         </h2>
         <p className="text-sm text-stone-500">
-          {deals.length} deal{deals.length === 1 ? "" : "s"} · ZIP {zip}
+          {deals.length} deal{deals.length === 1 ? "" : "s"}
           {publixLabel && ` · Publix ${publixLabel}`}
           {targetLabel && ` · Target ${targetLabel}`}
         </p>

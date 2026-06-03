@@ -10,12 +10,13 @@ export function PreferredStores() {
   const publixOptions = getPreferredStoresForRetailer("publix");
   const target = getPreferredStoresForRetailer("target")[0];
   const wholeFoods = getPreferredStoresForRetailer("whole-foods")[0];
+  const costco = getPreferredStoresForRetailer("costco")[0];
 
   return (
     <section className="rounded-2xl border border-emerald-100 bg-emerald-50/60 p-5">
       <h2 className="text-sm font-semibold text-emerald-900">Your stores</h2>
 
-      <div className="mt-4 grid gap-3 sm:grid-cols-3">
+      <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {publixOptions.map((store) => (
           <div
             key={store.storeNumber}
@@ -57,6 +58,19 @@ export function PreferredStores() {
             </p>
           </div>
         )}
+
+        {costco && (
+          <div className="rounded-xl border border-emerald-200/80 bg-white px-4 py-3 text-sm">
+            <p className="text-xs font-medium uppercase tracking-wide text-emerald-800 mb-1">Costco</p>
+            <p className="font-medium text-stone-900">
+              {costco.shortName}{" "}
+              <span className="font-normal text-stone-500">#{costco.storeNumber}</span>
+            </p>
+            <p className="mt-0.5 text-xs text-stone-600">
+              {costco.address}, {costco.city} {costco.zip}
+            </p>
+          </div>
+        )}
       </div>
 
       <ul className="mt-4 flex flex-wrap gap-3 text-xs">
@@ -75,7 +89,9 @@ export function PreferredStores() {
                   ? "Publix"
                   : store.retailer === "target"
                     ? "Target"
-                    : "Whole Foods"}{" "}
+                    : store.retailer === "costco"
+                      ? "Costco"
+                      : "Whole Foods"}{" "}
                 {store.shortName} weekly ad →
               </a>
             </li>

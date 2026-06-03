@@ -1,4 +1,4 @@
-export type RetailerId = "publix" | "target" | "whole-foods";
+export type RetailerId = "publix" | "target" | "whole-foods" | "costco";
 
 export type DealKind = "sale" | "coupon" | "bogo";
 

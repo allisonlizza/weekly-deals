@@ -116,9 +116,11 @@ export async function fetchRetailerDealsFromFlipp(
   const flippQuery = userQuery.trim() || config.flippBrowseQuery;
   const items = await fetchFlippItems(postalCode, flippQuery, storeCode);
 
+  const now = Date.now();
   const deals = items
     .map((item) => flippItemToDeal(item, retailer))
-    .filter((d): d is Deal => d !== null);
+    .filter((d): d is Deal => d !== null)
+    .filter((d) => !d.validTo || new Date(d.validTo).getTime() > now);
 
   if (!userQuery.trim()) {
     return deals;
