@@ -2,7 +2,6 @@
 
 import {
   loadPublixStorePreference,
-  PreferredStores,
   savePublixStorePreference,
 } from "@/components/PreferredStores";
 import { DEFAULT_PUBLIX_STORE } from "@/lib/preferred-stores";
@@ -64,11 +63,6 @@ export function SearchForm() {
 
   return (
     <div className="space-y-5">
-      <PreferredStores
-        publixStore={publixStore}
-        onPublixStoreChange={handlePublixStoreChange}
-      />
-
       <form
         onSubmit={onSubmit}
         className="space-y-5 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm"

@@ -1,6 +1,7 @@
 import { DealResults } from "@/components/DealResults";
 import { SearchForm } from "@/components/SearchForm";
 import { DEFAULT_PUBLIX_STORE, getDefaultWfmStoreId } from "@/lib/preferred-stores";
+import { PreferredStores } from "@/components/PreferredStores";
 import { Suspense } from "react";
 
 interface HomeProps {
@@ -68,6 +69,10 @@ export default async function Home({ searchParams }: HomeProps) {
           browse weekly ad highlights.
         </p>
       )}
+
+      <div className="mt-10">
+        <PreferredStores />
+      </div>
     </main>
   );
 }
