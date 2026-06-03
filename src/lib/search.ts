@@ -80,7 +80,7 @@ export async function searchDeals(params: SearchParams): Promise<SearchResult> {
 }
 
 export function retailerIdsFromParam(value: string | null): RetailerId[] {
-  if (!value) return ["publix", "target", "whole-foods"];
+  if (!value) return ["publix", "target", "whole-foods", "costco"];
   const allowed = new Set<RetailerId>(["publix", "target", "whole-foods", "costco"]);
   return value
     .split(",")
