@@ -51,9 +51,22 @@ export async function DealResults({
 
       {warnings.length > 0 && (
         <ul className="space-y-2 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950">
-          {warnings.map((w) => (
-            <li key={w}>{w}</li>
-          ))}
+          {warnings.map((w) => {
+            const urlMatch = w.match(/https?:\/\/\S+/);
+            if (urlMatch) {
+              const [before, ...rest] = w.split(urlMatch[0]);
+              return (
+                <li key={w}>
+                  {before}
+                  <a href={urlMatch[0]} target="_blank" rel="noopener noreferrer" className="underline font-medium">
+                    View Whole Foods weekly flyer →
+                  </a>
+                  {rest.join("")}
+                </li>
+              );
+            }
+            return <li key={w}>{w}</li>;
+          })}
         </ul>
       )}
 
