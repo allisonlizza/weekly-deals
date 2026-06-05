@@ -1,5 +1,5 @@
 import { fetchRetailerDealsFromFlipp } from "./flipp";
-import { flippPostalCodeForSearch } from "./preferred-stores";
+import { flippPostalCodeForSearch, getPreferredStore } from "./preferred-stores";
 import { RETAILERS } from "./retailers";
 import { fetchWholeFoodsDeals } from "./wholefoods";
 import type { RetailerId, SearchParams, SearchResult } from "./types";
@@ -36,14 +36,7 @@ export async function searchDeals(params: SearchParams): Promise<SearchResult> {
           : retailer === "target"
             ? "1486"
             : undefined;
-      const zip =
-        retailer === "target"
-          ? "30329"
-          : retailer === "publix"
-            ? flippPostalCodeForSearch(["publix"], params.publixStoreNumber)
-            : retailer === "costco"
-              ? "30319"
-              : flippZip;
+      const zip = getPreferredStore(retailer)?.zip ?? flippZip;
 
       return await fetchRetailerDealsFromFlipp(
         retailer,
@@ -80,8 +73,8 @@ export async function searchDeals(params: SearchParams): Promise<SearchResult> {
 }
 
 export function retailerIdsFromParam(value: string | null): RetailerId[] {
-  if (!value) return ["publix", "target", "whole-foods", "costco"];
-  const allowed = new Set<RetailerId>(["publix", "target", "whole-foods", "costco"]);
+  if (!value) return ["publix", "target", "whole-foods", "costco", "sprouts", "kroger", "aldi", "lidl"];
+  const allowed = new Set<RetailerId>(["publix", "target", "whole-foods", "costco", "sprouts", "kroger", "aldi", "lidl"]);
   return value
     .split(",")
     .map((s) => s.trim() as RetailerId)

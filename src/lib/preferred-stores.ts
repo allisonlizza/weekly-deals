@@ -46,6 +46,38 @@ export const PREFERRED_STORES: PreferredStore[] = [
     city: "Atlanta",
     zip: "30319",
   },
+  {
+    retailer: "sprouts",
+    storeNumber: "519",
+    shortName: "Morningside",
+    address: "1845 Piedmont Ave NE",
+    city: "Atlanta",
+    zip: "30324",
+  },
+  {
+    retailer: "kroger",
+    storeNumber: "491",
+    shortName: "Peachtree",
+    address: "3871 Peachtree Rd NE",
+    city: "Atlanta",
+    zip: "30319",
+  },
+  {
+    retailer: "aldi",
+    storeNumber: "aldi-buford",
+    shortName: "Buford Hwy",
+    address: "3963 Buford Hwy NE",
+    city: "Atlanta",
+    zip: "30329",
+  },
+  {
+    retailer: "lidl",
+    storeNumber: "US01444",
+    shortName: "Briarcliff",
+    address: "2480 Briarcliff Rd NE",
+    city: "Atlanta",
+    zip: "30329",
+  },
 ];
 
 export const DEFAULT_PUBLIX_STORE = "1363";
@@ -86,6 +118,14 @@ export function retailerWeeklyAdUrl(
     }
     case "costco":
       return "https://www.costco.com/savings-events.html";
+    case "sprouts":
+      return "https://www.sprouts.com/deals/";
+    case "kroger":
+      return "https://www.kroger.com/weeklyad";
+    case "aldi":
+      return "https://www.aldi.us/en/weekly-specials/";
+    case "lidl":
+      return "https://www.lidl.com/en/weekly-specials.htm";
     default:
       return undefined;
   }
@@ -111,6 +151,14 @@ export function retailerStorePageUrl(
     }
     case "costco":
       return "https://www.costco.com/warehouse-locations/brookhaven-atlanta-ga-1084.html";
+    case "sprouts":
+      return `https://www.sprouts.com/store/ga/atlanta/atlanta-morningside/`;
+    case "kroger":
+      return `https://www.kroger.com/stores/details/011/00491`;
+    case "aldi":
+      return "https://stores.aldi.us/ga/atlanta/3963-buford-highway";
+    case "lidl":
+      return "https://www.lidl.com/stores/US01444";
     default:
       return undefined;
   }

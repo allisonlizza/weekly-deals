@@ -33,6 +33,30 @@ export const RETAILERS: Record<RetailerId, RetailerConfig> = {
     flippMerchantId: 2519,
     flippBrowseQuery: "costco",
   },
+  sprouts: {
+    id: "sprouts",
+    label: "Sprouts",
+    flippMerchantId: 2419,
+    flippBrowseQuery: "sprouts",
+  },
+  kroger: {
+    id: "kroger",
+    label: "Kroger",
+    flippMerchantId: 2774,
+    flippBrowseQuery: "kroger",
+  },
+  aldi: {
+    id: "aldi",
+    label: "ALDI",
+    flippMerchantId: 2353,
+    flippBrowseQuery: "aldi",
+  },
+  lidl: {
+    id: "lidl",
+    label: "Lidl",
+    flippMerchantId: 5114,
+    flippBrowseQuery: "lidl",
+  },
 };
 
-export const DEFAULT_RETAILERS: RetailerId[] = ["publix", "target", "whole-foods", "costco"];
+export const DEFAULT_RETAILERS: RetailerId[] = ["publix", "target", "whole-foods", "costco", "sprouts", "kroger", "aldi", "lidl"];

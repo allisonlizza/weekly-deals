@@ -3,6 +3,7 @@ import {
   getPreferredStore,
   PREFERRED_STORES,
 } from "@/lib/preferred-stores";
+import { RETAILERS } from "@/lib/retailers";
 import { searchDeals, retailerIdsFromParam } from "@/lib/search";
 import type { SearchParams } from "@/lib/types";
 import { DealCard } from "./DealCard";
@@ -30,7 +31,7 @@ export async function DealResults({
 
   const storeLabels = params.retailers.map((r) => {
     const store = getPreferredStore(r, r === "publix" ? publixStore : undefined);
-    return store ? `${store.retailer === "publix" ? "Publix" : store.retailer === "target" ? "Target" : store.retailer === "whole-foods" ? "Whole Foods" : "Costco"} ${store.shortName}` : null;
+    return store ? `${RETAILERS[r].label} ${store.shortName}` : null;
   }).filter(Boolean);
 
   const { deals, warnings, fetchedAt } = await searchDeals(params);

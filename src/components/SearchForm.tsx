@@ -14,6 +14,10 @@ const STORES: { id: RetailerId; label: string }[] = [
   { id: "target", label: "Target" },
   { id: "whole-foods", label: "Whole Foods" },
   { id: "costco", label: "Costco" },
+  { id: "sprouts", label: "Sprouts" },
+  { id: "kroger", label: "Kroger" },
+  { id: "aldi", label: "ALDI" },
+  { id: "lidl", label: "Lidl" },
 ];
 
 export function SearchForm() {
@@ -27,7 +31,7 @@ export function SearchForm() {
 
   const [stores, setStores] = useState<RetailerId[]>(() => {
     const raw = params.get("stores");
-    if (!raw) return ["publix", "target", "whole-foods", "costco"];
+    if (!raw) return ["publix", "target", "whole-foods", "costco", "sprouts", "kroger", "aldi", "lidl"];
     return raw.split(",").filter(Boolean) as RetailerId[];
   });
 

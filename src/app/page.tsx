@@ -31,7 +31,7 @@ export default async function Home({ searchParams }: HomeProps) {
           What&apos;s on sale where you shop
         </h1>
         <p className="mt-3 max-w-2xl text-stone-600">
-          Search by item or brand across Publix, Target, Whole Foods, and Costco.
+          Search by item or brand across your local stores.
           See BOGOs, percent-off promos, and weekly flyer prices.
         </p>
       </header>

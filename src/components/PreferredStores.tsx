@@ -1,76 +1,33 @@
 import {
   DEFAULT_PUBLIX_STORE,
-  getPreferredStoresForRetailer,
   PREFERRED_STORES,
   retailerStorePageUrl,
   retailerWeeklyAdUrl,
 } from "@/lib/preferred-stores";
+import { RETAILERS } from "@/lib/retailers";
 
 export function PreferredStores() {
-  const publixOptions = getPreferredStoresForRetailer("publix");
-  const target = getPreferredStoresForRetailer("target")[0];
-  const wholeFoods = getPreferredStoresForRetailer("whole-foods")[0];
-  const costco = getPreferredStoresForRetailer("costco")[0];
-
   return (
     <section className="rounded-2xl border border-emerald-100 bg-emerald-50/60 p-5">
       <h2 className="text-sm font-semibold text-emerald-900">Your stores</h2>
 
       <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        {publixOptions.map((store) => (
+        {PREFERRED_STORES.map((store) => (
           <div
-            key={store.storeNumber}
+            key={`${store.retailer}-${store.storeNumber}`}
             className="rounded-xl border border-emerald-200/80 bg-white px-4 py-3 text-sm"
           >
-            <p className="text-xs font-medium uppercase tracking-wide text-emerald-800 mb-1">Publix</p>
+            <p className="text-xs font-medium uppercase tracking-wide text-emerald-800 mb-1">
+              {RETAILERS[store.retailer].label}
+            </p>
             <p className="font-medium text-stone-900">
-              {store.shortName}{" "}
-              <span className="font-normal text-stone-500">#{store.storeNumber}</span>
+              {store.shortName}
             </p>
             <p className="mt-0.5 text-xs text-stone-600">
               {store.address}, {store.city} {store.zip}
             </p>
           </div>
         ))}
-
-        {target && (
-          <div className="rounded-xl border border-emerald-200/80 bg-white px-4 py-3 text-sm">
-            <p className="text-xs font-medium uppercase tracking-wide text-emerald-800 mb-1">Target</p>
-            <p className="font-medium text-stone-900">
-              {target.shortName}{" "}
-              <span className="font-normal text-stone-500">#{target.storeNumber}</span>
-            </p>
-            <p className="mt-0.5 text-xs text-stone-600">
-              {target.address}, {target.city} {target.zip}
-            </p>
-          </div>
-        )}
-
-        {wholeFoods && (
-          <div className="rounded-xl border border-emerald-200/80 bg-white px-4 py-3 text-sm">
-            <p className="text-xs font-medium uppercase tracking-wide text-emerald-800 mb-1">Whole Foods</p>
-            <p className="font-medium text-stone-900">
-              {wholeFoods.shortName}{" "}
-              <span className="font-normal text-stone-500">#{wholeFoods.wfmStoreId}</span>
-            </p>
-            <p className="mt-0.5 text-xs text-stone-600">
-              {wholeFoods.address}, {wholeFoods.city} {wholeFoods.zip}
-            </p>
-          </div>
-        )}
-
-        {costco && (
-          <div className="rounded-xl border border-emerald-200/80 bg-white px-4 py-3 text-sm">
-            <p className="text-xs font-medium uppercase tracking-wide text-emerald-800 mb-1">Costco</p>
-            <p className="font-medium text-stone-900">
-              {costco.shortName}{" "}
-              <span className="font-normal text-stone-500">#{costco.storeNumber}</span>
-            </p>
-            <p className="mt-0.5 text-xs text-stone-600">
-              {costco.address}, {costco.city} {costco.zip}
-            </p>
-          </div>
-        )}
       </div>
 
       <ul className="mt-4 flex flex-wrap gap-3 text-xs">
@@ -85,14 +42,7 @@ export function PreferredStores() {
                 rel="noopener noreferrer"
                 className="text-emerald-700 underline-offset-2 hover:underline"
               >
-                {store.retailer === "publix"
-                  ? "Publix"
-                  : store.retailer === "target"
-                    ? "Target"
-                    : store.retailer === "costco"
-                      ? "Costco"
-                      : "Whole Foods"}{" "}
-                {store.shortName} weekly ad →
+                {RETAILERS[store.retailer].label} {store.shortName} weekly ad →
               </a>
             </li>
           );
